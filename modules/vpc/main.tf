@@ -14,7 +14,7 @@ resource "aws_subnet" "public" {
   cidr_block = each.value
    map_public_ip_on_launch = true
   tags = merge(var.tags, {
-    Name = join("-", [var.tags["Env"], var.tags["Project"], each.key])
+    Name = join("-", [var.tags["Env"], var.tags["Project"],"public-subnet", each.key])
   })
 }
 
@@ -25,6 +25,6 @@ resource "aws_subnet" "private" {
   cidr_block = each.value
    map_public_ip_on_launch = false
   tags = merge(var.tags, {
-    Name = join("-", [var.tags["Env"], var.tags["Project"], each.key])
+    Name = join("-", [var.tags["Env"], var.tags["Project"],"private-subnet", each.key])
   })
 }
